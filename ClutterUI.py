@@ -276,18 +276,27 @@ class Toplevel1:
     def clear_scan_folder(self):
         paths = self.addrfront.get("1.0","end").strip()
         paths = os.path.normpath(paths)
-        y = engine.move_clutter(paths,'others')
-        self.movingdesc.place(relx=0.280, rely=0.886, height=36, width=300)
+        task_progress = engine.move_clutter('others')
+        self.movingdesc.place(relx=0.270, rely=0.886, height=36, width=300)
         moved_counter = 0 
-        for m in y:
-            print(m)
+        for m in task_progress:
             self.movingdesc.config(text = m)
             self.movingdesc.update()
             moved_counter += 1
             all_file_sum = len(engine.images)+len(engine.documents)+len(engine.audios)+len(engine.videos)+len(engine.archives)+len(engine.others)
             status_len = (moved_counter/all_file_sum)*665
-            print(status_len)
             self.copy_status.configure(width = status_len)
+
+    def clear_download_folder(self):
+        task_progress = engine.move_clutter('downloads')
+        moved_counter = 0
+        for x in task_progress:
+            moved_counter += 1
+            all_file_sum = len(engine.images)+len(engine.documents)+len(engine.audios)+len(engine.videos)+len(engine.archives)+len(engine.others)
+            status_len = (moved_counter/all_file_sum)*655
+            self.copy_status_download.configure(width = status_len)
+
+
 
       
      
@@ -1365,6 +1374,7 @@ class Toplevel1:
         self.cleanbtn.configure(pady="0")
         self.cleanbtn.configure(relief='flat')
         self.cleanbtn.configure(text='''Clean''')
+        self.cleanbtn.configure(command = self.clear_download_folder )
 
         self.cltrsizelbl = tk.Label(self.menuplane)
         self.cltrsizelbl.place(relx=0.361, rely=0.818, height=36, width=72)
@@ -1446,6 +1456,16 @@ class Toplevel1:
         self.underlineframe_6.configure(highlightbackground="#d9d9d9")
         self.underlineframe_6.configure(highlightcolor="black")
         self.underlineframe_6.configure(width=58)
+
+        self.copy_status_download = tk.Frame(self.menuplane)
+        self.copy_status_download.place(relx= -0, rely=0.99, relheight=0.021)
+        self.copy_status_download.configure(relief='flat')
+        self.copy_status_download.configure(borderwidth="1")
+        self.copy_status_download.configure(background="#4FB7F9")
+        self.copy_status_download.configure(highlightbackground="#d9d9d9")
+        self.copy_status_download.configure(highlightcolor="black")
+        self.copy_status_download.configure(width=0)
+
         # menu plane ends here
 
 
@@ -1649,13 +1669,13 @@ class Toplevel1:
         self.cleanfldrbtn.configure(command = self.clear_scan_folder)
 
         self.movingdesc = tk.Label(self.actionsplane)
-        self.movingdesc.place(relx=0.280, rely=0.886, height=36, width=300)
+        self.movingdesc.place(relx=0.270, rely=0.886, height=36, width=300)
         self.movingdesc.configure(activebackground="#f9f9f9")
         self.movingdesc.configure(activeforeground="black")
-        self.movingdesc.configure(background="#FFFFFF")
+        self.movingdesc.configure(background="#221F2E")
         self.movingdesc.configure(disabledforeground="#a3a3a3")
         self.movingdesc.configure(font=font14)
-        self.movingdesc.configure(foreground="#000000")
+        self.movingdesc.configure(foreground="#FFFFFF")
         self.movingdesc.configure(highlightbackground="#d9d9d9")
         self.movingdesc.configure(highlightcolor="black")
         self.movingdesc.configure(text='''''')
