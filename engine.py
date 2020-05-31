@@ -313,27 +313,45 @@ def load_paths():
     
     
     
-def move_clutter(pathfrom,move_type):
+def move_clutter(move_type):
     import time
     import shutil
     path_load = load_paths()
-    status = ""
     if move_type == "others":
-        req_path = path_load[1]
-        req_path = os.path.normpath(req_path)
-        req_path = os.path.join(req_path,'Folder Clutter')
-        status = "Moving images"
-        if images:
-            for files in images:
-                shutil.move(files, os.path.join(req_path,'Images'))
-                yield files
-                
-        status = "Moving Documents"
-        if documents:
-            for files in documents:
-                shutil.move(files, os.path.join(req_path,'Documnets'))
-                yield files
-                
+        path_request = path_load[1]
+        base_folder = 'Folder Clutter'
+    elif move_type == 'downloads':
+        seperate_file_folder(get_download_path())
+        path_request = path_load[0]
+        base_folder = 'Download Clutter'
+    req_path = path_request
+    req_path = os.path.normpath(req_path)
+    req_path = os.path.join(req_path,base_folder)
+    if images:
+        for files in images:
+            shutil.move(files, os.path.join(req_path,'Images'))
+            yield files 
+    if documents:
+        for files in documents:
+            shutil.move(files, os.path.join(req_path,'Documnets'))
+            yield files
+    if audios:
+        for files in audios:
+            shutil.move(files, os.path.join(req_path,'Audios'))
+            yield files
+    if videos:
+        for files in videos:
+            shutil.move(files, os.path.join(req_path,'Videos'))
+            yield files
+    if archives:
+        for files in archives:
+            shutil.move(files, os.path.join(req_path,'Archives'))
+            yield files
+    if others:
+        for files in others:
+            shutil.move(files, os.path.join(req_path,'Others'))
+            yield files
+
 
                 
     
