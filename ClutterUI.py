@@ -104,14 +104,14 @@ class Toplevel1:
     def click_menu(self):
         self.menuplane.place(relx=0.101, rely=0.074, relheight=0.926
                 , relwidth=0.9)
-        self.pointer.place(rely = 0.294)
+        self.pointer.place(rely = 0.177*2)
         self.homeplane.place_forget()
         self.actionsplane.place_forget()
         self.settingsplane.place_forget()
 
     def click_home(self):
         self.menuplane.place_forget()
-        self.pointer.place(rely = 0.147)
+        self.pointer.place(rely = 0.177*1)
         self.homeplane.place(relx=0.101, rely=0.074, relheight=0.926
                 , relwidth=0.9)
         self.actionsplane.place_forget()
@@ -122,7 +122,7 @@ class Toplevel1:
         self.menuplane.place_forget()
         self.actionsplane.place(relx=0.101, rely=0.074, relheight=0.926
                 , relwidth=0.9)
-        self.pointer.place(rely = 0.441)
+        self.pointer.place(rely = 0.177*3)
         self.settingsplane.place_forget()
 
     def click_settings(self):
@@ -131,7 +131,7 @@ class Toplevel1:
         self.actionsplane.place_forget()
         self.settingsplane.place(relx=0.101, rely=0.074, relheight=0.926
                 , relwidth=0.9)
-        self.pointer.place(rely = 0.588 )
+        self.pointer.place(rely = 0.177*4 )
 
 
         
@@ -379,8 +379,22 @@ class Toplevel1:
         self.sidebar.configure(highlightcolor="black")
         self.sidebar.configure(width=75)
 
+        self.logo = tk.Label(self.sidebar)
+        self.logo.place(relx=0, rely=0, height=75, width= 75)
+        self.logo.configure(activebackground="#f9f9f9")
+        self.logo.configure(activeforeground="black")
+        self.logo.configure(background="#2F2B3F")
+        self.logo.configure(borderwidth="0")
+        self.logo.configure(disabledforeground="#a3a3a3")
+        self.logo.configure(foreground="#000000")
+        self.logo.configure(highlightbackground="#d9d9d9")
+        self.logo.configure(highlightcolor="black")
+        self._img79 = tk.PhotoImage(file="./dclutter logo prd.png")
+        self.logo.configure(image=self._img79)
+        self.logo.configure(text='''Label''')
+
         self.Button2 = tk.Button(self.sidebar)
-        self.Button2.place(relx=0.133, rely=0.147, height=66, width=66)
+        self.Button2.place(relx=0.133, rely=0.177, height=66, width=66)
         self.Button2.configure(activebackground="#2F2B3F")
         self.Button2.configure(activeforeground="white")
         self.Button2.configure(activeforeground="#2F2B3F")
@@ -401,7 +415,7 @@ class Toplevel1:
         self.Button2.configure(command = self.click_home)
 
         self.menu = tk.Button(self.sidebar)
-        self.menu.place(relx=0.133, rely=0.295, height=66, width=66)
+        self.menu.place(relx=0.133, rely=0.177*2, height=66, width=66)
         self.menu.configure(activebackground="#2F2B3F")
         self.menu.configure(activeforeground="white")
         self.menu.configure(activeforeground="#2F2B3F")
@@ -422,7 +436,7 @@ class Toplevel1:
         self.menu.configure(command = self.click_menu)
 
         self.options = tk.Button(self.sidebar)
-        self.options.place(relx=0.133, rely=0.442, height=66, width=66)
+        self.options.place(relx=0.133, rely=0.177*3, height=66, width=66)
         self.options.configure(activebackground="#2F2B3F")
         self.options.configure(activeforeground="white")
         self.options.configure(activeforeground="#2F2B3F")
@@ -443,7 +457,7 @@ class Toplevel1:
         self.options.configure(command = self.click_action)
 
         self.settings = tk.Button(self.sidebar)
-        self.settings.place(relx=0.133, rely=0.589, height=66, width=66)
+        self.settings.place(relx=0.133, rely=0.177*4, height=66, width=66)
         self.settings.configure(activebackground="#2F2B3F")
         self.settings.configure(activeforeground="white")
         self.settings.configure(activeforeground="#2F2B3F")
@@ -465,7 +479,7 @@ class Toplevel1:
         
 
         self.pointer = tk.Frame(self.sidebar)
-        self.pointer.place(relx=-0.067, rely=0.147, relheight=0.147
+        self.pointer.place(relx=-0.067, rely=0.177, relheight=0.147
                 , relwidth=0.107)
         self.pointer.configure(relief='flat')
         self.pointer.configure(borderwidth="0")
